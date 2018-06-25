@@ -11,10 +11,10 @@ import RendererDragContainer from './RendererDragContainer';
 
 const { Deletable, Expandable, Favorite } = Renderers;
 
-const NodeNameRenderer = ({ node: { name }, children }) => (
+const NodeNameRenderer = ({ node: { data }, children }) => (
   <span>
-    { name }
-    { children }
+     { data.id }
+     { children }
   </span>
 );
 
@@ -39,6 +39,7 @@ class BasicTree extends Component {
   }
 
   handleChange = (nodes) => {
+    console.log("NODES ", nodes)
     this.setState({ nodes });
   }
 

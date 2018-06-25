@@ -9,5 +9,5 @@ export const getFlattenedTree = (nodes, parents = []) => nodes.reduce((flattened
     return [ ...flattenedTree, nodeWithHelpers];
   }
 
-  return [...flattenedTree, nodeWithHelpers, ...getFlattenedTree(node.children, [ ...parents, node.id])]
+  return [...flattenedTree, nodeWithHelpers, ...getFlattenedTree(node.children, [ ...parents, node.data.id])]
 }, []);

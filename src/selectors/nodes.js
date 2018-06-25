@@ -24,8 +24,8 @@ const NODE_OPERATION_TYPES = {
 }
 
 const NODE_CHANGE_OPERATIONS = {
-  CHANGE_NODE: (nodes, updatedNode) => nodes.map(n => n.id === updatedNode.id ? omit(updatedNode, FLATTEN_TREE_PROPERTIES) : n),
-  DELETE_NODE: (nodes, updatedNode) => nodes.filter(n => n.id !== updatedNode.id)
+  CHANGE_NODE: (nodes, updatedNode) => nodes.map(n => n.data.id === updatedNode.data.id ? omit(updatedNode, FLATTEN_TREE_PROPERTIES) : n),
+  DELETE_NODE: (nodes, updatedNode) => nodes.filter(n => n.data.id !== updatedNode.data.id)
 }
 
 export const replaceNodeFromTree = (nodes, updatedNode, operation = NODE_OPERATION_TYPES.CHANGE_NODE) => {
@@ -39,7 +39,7 @@ export const replaceNodeFromTree = (nodes, updatedNode, operation = NODE_OPERATI
     return NODE_CHANGE_OPERATIONS[operation](nodes, updatedNode);
   }
 
-  const parentIndex = nodes.findIndex(n => n.id === parents[0])
+  const parentIndex = nodes.findIndex(n => n.data.id === parents[0])
   const preSiblings = nodes.slice(0, parentIndex);
   const postSiblings = nodes.slice(parentIndex + 1);
 
